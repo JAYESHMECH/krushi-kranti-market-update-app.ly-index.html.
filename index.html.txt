@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Bajarbhav</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>?? Daily Bajarbhav Maharashtra</h1>
+        <p>Check latest mandi prices</p>
+    </header>
+
+    <section class="filters">
+        <select id="crop">
+            <option value="">Select Crop</option>
+            <option value="Onion">Onion</option>
+            <option value="Soybean">Soybean</option>
+            <option value="Cotton">Cotton</option>
+        </select>
+
+        <select id="district">
+            <option value="">Select District</option>
+            <option value="Pune">Pune</option>
+            <option value="Nashik">Nashik</option>
+            <option value="Nagpur">Nagpur</option>
+        </select>
+
+        <button onclick="filterData()">Search</button>
+    </section>
+
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>District</th>
+                    <th>Min Price</th>
+                    <th>Max Price</th>
+                    <th>Modal Price</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+            </tbody>
+        </table>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

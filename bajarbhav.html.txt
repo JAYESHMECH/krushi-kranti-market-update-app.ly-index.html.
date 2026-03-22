@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Live Bajarbhav</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>?? Live Bajarbhav</h1>
+<p>Real-time mandi prices (Maharashtra)</p>
+</header>
+
+<section class="filters">
+<select id="district">
+<option value="">All Districts</option>
+<option>Nagpur</option>
+<option>Pune</option>
+<option>Nashik</option>
+<option>Amravati</option>
+</select>
+
+<select id="crop">
+<option value="">All Crops</option>
+<option>Onion</option>
+<option>Soyabean</option>
+<option>Cotton</option>
+</select>
+
+<button onclick="loadData()">Load Data</button>
+</section>
+
+<table>
+<thead>
+<tr>
+<th>Commodity</th>
+<th>District</th>
+<th>Market</th>
+<th>Min</th>
+<th>Max</th>
+<th>Modal</th>
+</tr>
+</thead>
+<tbody id="table"></tbody>
+</table>
+
+<script>
+async function loadData() {
+    let url = "https://yourusername.pythonanywhere.com/data";
+
+    let res = await fetch(url);
+    let data = await res.json();
+
+    let district = document.getElementById("district").value;
+    let crop = document.getElementById("crop").value;
+
+    let table = document.getElementById("table");
+    table.innerHTML = "";
+
+    data.records.slice(0,100).forEach(item => {
+
+        if ((district && item.district != district) ||
+            (crop && item.commodity != crop)) return;
+
+        table.innerHTML += `
+        <tr>
+        <td>${item.commodity}</td>
+        <td>${item.district}</td>
+        <td>${item.market}</td>
+        <td>?${item.min_price}</td>
+        <td>?${item.max_price}</td>
+        <td>?${item.modal_price}</td>
+        </tr>`;
+    });
+}
+</script>
+
+</body>
+</html>

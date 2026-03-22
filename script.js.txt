@@ -1,0 +1,26 @@
+async function loadData() {
+    const res = await fetch("http://127.0.0.1:5000/data");
+    const data = await res.json();
+    displayData(data);
+}
+
+function displayData(data) {
+    const table = document.getElementById("dataTable");
+    table.innerHTML = "";
+
+    data.forEach(item => {
+        table.innerHTML += `
+            <tr>
+                <td>${item.commodity}</td>
+                <td>${item.district}</td>
+                <td>${item.market}</td>
+                <td>?${item.min_price}</td>
+                <td>?${item.max_price}</td>
+                <td>?${item.modal_price}</td>
+            </tr>
+        `;
+    });
+}
+
+// Load when page opens
+loadData();
